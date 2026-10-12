@@ -4,7 +4,7 @@ Tên nhóm: DoanNgoc (làm cá nhân, 1 thành viên)
 
 Repo chung: https://github.com/nngocnd/K4-L3-DAY24-DoanNgoc-Eval-Guard
 
-Trưởng nhóm/người nộp: Ngô Doãn Ngọc — 2A202602635
+Trưởng nhóm/người nộp: Ngọ Doãn Ngọc — 2A202602635
 
 Ngày lab/deadline áp dụng: 12/10/2026, 23:59 — Asia/Ho_Chi_Minh (UTC+07:00)
 
@@ -17,9 +17,9 @@ Thêm/xóa rows để khớp nhóm thật; mẫu ba rows không ép nhóm phải
 
 | STT | Họ và tên | MSSV | Vai trò / công việc thật | Bằng chứng |
 |---|---|---|---|---|
-| 1 | Ngô Doãn Ngọc | 2A202602635 | Toàn bộ: tích hợp m1–m5 từ Day 18, Phase A (Tasks 1–4), Phase B (Tasks 5–8), Phase C (Tasks 9a–12), guard prompt, chạy batch live, 3 báo cáo + blueprint | Commits trên `main`; `artifacts/*.json`; `doc/reports/*.md` |
+| 1 | Ngọ Doãn Ngọc | 2A202602635 | Toàn bộ: tích hợp m1–m5 từ Day 18, Phase A (Tasks 1–4), Phase B (Tasks 5–8), Phase C (Tasks 9a–12), guard prompt, chạy batch live, 3 báo cáo + blueprint | Commits trên `main`; `artifacts/*.json`; `doc/reports/*.md` |
 
-Người tích hợp/chạy batch/nộp link: Ngô Doãn Ngọc. Đã chạy `setup_answers.py --live`, rồi
+Người tích hợp/chạy batch/nộp link: Ngọ Doãn Ngọc. Đã chạy `setup_answers.py --live`, rồi
 `run_experiments.py --phase a/b/c --live` (Phase C với `--latency-samples 20`), rồi
 `check_lab.py`; bằng chứng là 4 JSON trong `artifacts/`.
 
