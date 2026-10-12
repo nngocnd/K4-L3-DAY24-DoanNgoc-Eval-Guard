@@ -8,6 +8,10 @@ load_dotenv()
 # --- API Keys ---
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 HF_TOKEN = os.getenv("HF_TOKEN", "")  # Optional: for HuggingFace models
+# OpenAI-compatible gateway. The OpenAI SDK and langchain-openai read OPENAI_BASE_URL
+# themselves; this team routes through OpenRouter, whose model IDs carry a vendor prefix.
+OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "")
+_MODEL_PREFIX = "openai/" if "openrouter.ai" in OPENAI_BASE_URL else ""
 
 # --- Qdrant (same as Day 18) ---
 QDRANT_HOST = "localhost"
@@ -45,8 +49,21 @@ GUARDRAILS_CONFIG_DIR = os.path.join(ROOT_DIR, "guardrails")
 PAIR_QUESTION_IDS = (1, 5, 12, 21, 41)
 
 # --- LLM Judge ---
-GENERATION_MODEL = "gpt-4o-mini"
-JUDGE_MODEL = "gpt-4o-mini"
+GENERATION_MODEL = _MODEL_PREFIX + "gpt-4o-mini"
+JUDGE_MODEL = _MODEL_PREFIX + "gpt-4o-mini"
+
+# --- Day 18 module compatibility (m5 enrichment LLM, m4 RAGAS evaluator) ---
+LLM_API_KEY = OPENAI_API_KEY
+LLM_BASE_URL = OPENAI_BASE_URL or None
+LLM_MODEL = _MODEL_PREFIX + "gpt-4o-mini"                        # m5 enrichment
+EVAL_LLM_MODEL = _MODEL_PREFIX + "gpt-4o-mini"                   # m4 RAGAS evaluator LLM
+EVAL_EMBEDDING_MODEL = _MODEL_PREFIX + "text-embedding-3-small"  # m4 answer_relevancy embeddings
+
+
+def get_llm_client():
+    """OpenAI client used by the Day 18 modules (retries absorb rate limits)."""
+    from openai import OpenAI
+    return OpenAI(api_key=LLM_API_KEY, base_url=LLM_BASE_URL, max_retries=8)
 
 # --- Guardrail latency budget ---
 LATENCY_BUDGET_P95_MS = 500  # Full guard target; Task 12 currently measures input guards only.
